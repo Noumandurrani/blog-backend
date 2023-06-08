@@ -17,11 +17,11 @@ const {
   unPublish,
   approvedByAdmnin,
 } = require("../Controllers/PublishController");
-const multer = require("multer");
 const {
   resetLink,
   forgotPassword,
 } = require("../Controllers/forgotPasswordController");
+const multer = require("multer");
 
 ///------upload file start------//
 var storage = multer.diskStorage({
@@ -67,5 +67,6 @@ router.get("/post/approved/:id", approvedByAdmnin);
 
 ////forgot password
 router.post("/reset/Link", resetLink);
-router.post("/forgot/Pass", forgotPassword);
+router.post("/forgot/Pass", authToken, forgotPassword);
+
 module.exports = router;
