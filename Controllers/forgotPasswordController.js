@@ -3,7 +3,7 @@ const User = require("../Models/User");
 const bcrypt = require("bcrypt");
 
 const creatToken = async (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET);
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "60s" });
 };
 
 // reset Link
