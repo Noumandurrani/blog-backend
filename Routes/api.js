@@ -68,5 +68,7 @@ router.get("/post/approved/:id", approvedByAdmnin);
 ////forgot password
 router.post("/reset/Link", resetLink);
 router.post("/forgot/Pass", authToken, forgotPassword);
-
+////
+//////
+/////
 module.exports = router;
