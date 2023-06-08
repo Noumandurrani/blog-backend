@@ -1,17 +1,25 @@
 const User = require("../Models/User");
-
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 ///post create
 const createUser = async (req, res) => {
+  /////encrypt paswrd
+  let salt = await bcrypt.genSalt();
+  let encryptPassword = await bcrypt.hash(req.body.password, salt);
+  /////
   const user = await User.create({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
-    password: req.body.password,
+    password: encryptPassword,
     profile: process.env.AVATAR_IMAGE,
-    role: "user",
+    role: "admin",
   });
+  let token = await createWebTtoken(user._id);
   res.json({
     message: "create user",
+    data: user,
+    token: token,
   });
 };
 
@@ -53,6 +61,12 @@ const delUser = async (req, res) => {
     message: "deleted successfully",
   });
 };
+
+////// authentication(jwt token)
+const createWebTtoken = async (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET);
+};
+//////
 
 ////export user
 module.exports = {

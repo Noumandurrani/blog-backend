@@ -2,7 +2,6 @@ const http = require("http");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
 //////env file ////// SECRET DATA
 const dotenv = require("dotenv");
 dotenv.config();
@@ -17,8 +16,16 @@ mongoose.set("strictQuery", false);
 mongoose.connect(process.env.DATABASE_URL, () => {
   console.log("MongoDB connected");
 });
+/////////access files from public folder
+app.use(express.static(__dirname + "/public/upload"));
 /////////
 app.use("/api/project", require("./Routes/api"));
+/////////
+app.use("*", (req, res) => {
+  res.status(404).json({
+    message: "This route does not exit!",
+  });
+});
 /////////
 server.listen(4000, () => {
   console.log("server running at 4000");

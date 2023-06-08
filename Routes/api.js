@@ -10,8 +10,10 @@ const {
 } = require("../Controllers/UserController");
 // const UserController = require("../Controllers/UserController");
 //////////////////////////////////
-//////////////////////////////////
-const { createPost } = require("../Controllers/PostController");
+////////post
+const { createPost, getPosts } = require("../Controllers/PostController");
+const authToken = require("../middleware/Auth");
+const login = require("../Controllers/AuthController");
 ///------upload file start------//
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -25,14 +27,18 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 //-------- upload file end -------//
 
-// file upload
+// post upload ///////////post routs
 router.post("/post-upload", upload.single("image"), createPost);
-
+router.get("/post-all", getPosts);
 //////////////////////////////////
-//////////////////////////////////
+////user routes
 router.post("/create-user", createUser);
 router.post("/update-user", updateUser);
-router.get("/get-user/:id", getUser);
+router.get("/get-user/:id", authToken, getUser);
 router.get("/get-all", getAllUsers);
 router.get("/del-user/:id", delUser);
+/////////////////////////
+////auth routes
+router.get("/user/login", login);
+///////
 module.exports = router;

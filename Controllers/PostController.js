@@ -14,7 +14,15 @@ const createPost = async (req, res) => {
     message: "post created",
   });
 };
-
+///get posts data
+const getPosts = async (req, res) => {
+  const getPostAll = await Post.find({});
+  res.json({
+    data: getPostAll,
+  });
+};
+////////////////
 module.exports = {
   createPost,
+  getPosts,
 };
