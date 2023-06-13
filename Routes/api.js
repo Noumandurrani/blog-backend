@@ -8,7 +8,11 @@ const {
   getAllUsers,
   delUser,
 } = require("../Controllers/UserController");
-const { createPost, getPosts } = require("../Controllers/PostController");
+const {
+  createPost,
+  getPosts,
+  getPostsById,
+} = require("../Controllers/PostController");
 const authToken = require("../middleware/Auth");
 const login = require("../Controllers/AuthController");
 const updateProfile = require("../Controllers/PorfileController");
@@ -18,15 +22,16 @@ const {
   approvedByAdmnin,
 } = require("../Controllers/PublishController");
 const {
-  resetLink,
   forgotPassword,
+  sendResetLink,
+  resetLink,
 } = require("../Controllers/forgotPasswordController");
 const multer = require("multer");
 
 ///------upload file start------//
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "public/upload");
+    cb(null, "public/upload/");
   },
   filename: function (req, file, cb) {
     var datetime = Date.now();
@@ -39,6 +44,7 @@ var upload = multer({ storage: storage });
 ////post routs
 router.post("/post-upload", upload.single("image"), createPost); // post upload
 router.get("/post-all", getPosts);
+router.get("/post-id/:id", getPostsById);
 
 ////user routes
 router.post("/create-user", createUser);
@@ -66,8 +72,11 @@ router.get("/unpublish/post/:id", unPublish);
 router.get("/post/approved/:id", approvedByAdmnin);
 
 ////forgot password
+// router.post("/reset/Link", resetLink);
+// router.post("/forgot/Pass", authToken, forgotPassword);
 router.post("/reset/Link", resetLink);
-router.post("/forgot/Pass", authToken, forgotPassword);
+router.post("/forgot/Password", forgotPassword);
+
 ////
 //////
 /////

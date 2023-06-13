@@ -22,8 +22,17 @@ const getPosts = async (req, res) => {
   });
 };
 ////////////////
+///get posts data by id
+const getPostsById = async (req, res) => {
+  const getPost = await Post.findById(req.params.id);
+  res.json({
+    data: getPost,
+  });
+};
+////////////////
 
 module.exports = {
   createPost,
   getPosts,
+  getPostsById,
 };

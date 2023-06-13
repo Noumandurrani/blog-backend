@@ -7,7 +7,9 @@ const dotenv = require("dotenv");
 dotenv.config();
 /////
 const app = express();
+const cors = require("cors");
 app.use(bodyParser.json());
+app.use(cors()); //alow api /// else blocked
 const server = http.createServer(app);
 const router = require("./Routes/api");
 /////////
