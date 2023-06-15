@@ -1,5 +1,4 @@
 const Post = require("../Models/Post");
-
 ///post create
 const createPost = async (req, res) => {
   console.log(req.file);

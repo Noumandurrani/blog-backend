@@ -19,7 +19,7 @@ mongoose.connect(process.env.DATABASE_URL, () => {
   console.log("MongoDB connected");
 });
 /////////access files from public folder
-app.use(express.static(__dirname + "/public/upload"));
+app.use(express.static(__dirname + "/public"));
 /////////
 app.use("/api/project", require("./Routes/api"));
 /////////
