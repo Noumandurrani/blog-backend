@@ -20,6 +20,7 @@ const login = async (req, res) => {
         token: jwtToken,
         data: user,
       });
+      // console.log(user);
     } else {
       res.status(401).json({
         success: false,

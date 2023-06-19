@@ -5,7 +5,12 @@ const mongoose = require("mongoose");
 //////env file ////// SECRET DATA
 const dotenv = require("dotenv");
 dotenv.config();
+/////limit api requests
+const rateLimit = require("express-rate-limit");
 /////
+/////remove special character ($, .) tthese used to fetch data from mongodb
+const mongoSanitize = require("express-mongo-sanitize");
+/////////
 const app = express();
 const cors = require("cors");
 app.use(bodyParser.json());
@@ -29,6 +34,10 @@ app.use("*", (req, res) => {
   });
 });
 /////////
+// app.use();
+//////// sanitize //prevent qquery inn nosql
+// app.use(mongoSanitize());
+////////
 server.listen(4000, () => {
   console.log("server running at 4000");
 });
