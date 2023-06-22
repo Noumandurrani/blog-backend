@@ -16,6 +16,9 @@ const PostSchema = new mongoose.Schema(
     author: {
       type: String,
     },
+    user_id: {
+      type: String,
+    },
     category: {
       type: String,
     },

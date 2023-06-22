@@ -12,6 +12,7 @@ const {
   createPost,
   getPosts,
   getPostsById,
+  getPostsByUserId,
 } = require("../Controllers/PostController");
 const authToken = require("../middleware/Auth");
 const login = require("../Controllers/AuthController");
@@ -45,6 +46,7 @@ var upload = multer({ storage: storage });
 router.post("/post-upload", upload.single("image"), createPost); // post upload
 router.get("/post-all", getPosts);
 router.get("/post-id/:id", getPostsById);
+router.post("/user/posts", getPostsByUserId);
 
 ////user routes
 router.post("/create-user", createUser);

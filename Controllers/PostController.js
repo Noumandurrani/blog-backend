@@ -1,4 +1,5 @@
 const Post = require("../Models/Post");
+const User = require("../Models/User");
 ///post create
 const createPost = async (req, res) => {
   console.log(req.file);
@@ -8,6 +9,7 @@ const createPost = async (req, res) => {
     body: req.body.body,
     author: req.body.author,
     category: req.body.category,
+    user_id: req.body.user_id,
   });
   res.json({
     message: "post created",
@@ -28,10 +30,18 @@ const getPostsById = async (req, res) => {
     data: getPost,
   });
 };
+////////////////get post by user id
+const getPostsByUserId = async (req, res) => {
+  const getUserPost = await Post.find({ user_id: req.body.user_id });
+  res.json({
+    data: getUserPost,
+  });
+};
 ////////////////
 
 module.exports = {
   createPost,
   getPosts,
   getPostsById,
+  getPostsByUserId,
 };
