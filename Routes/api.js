@@ -49,12 +49,12 @@ router.get("/post-id/:id", getPostsById);
 ////user routes
 router.post("/create-user", createUser);
 router.post("/update-user", updateUser);
-router.get("/get-user/:id", authToken, getUser);
+router.get("/get-user/:id", getUser);
 router.get("/get-all", getAllUsers);
 router.get("/del-user/:id", delUser);
 
 ////auth routes
-router.get("/user/login", login);
+router.post("/user/login", login);
 
 ////category routes
 router.post("/store/category", createCategory);
