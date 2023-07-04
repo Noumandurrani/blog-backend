@@ -37,6 +37,17 @@ const getPostsByUserId = async (req, res) => {
     data: getUserPost,
   });
 };
+///////////////update post
+const updatePost = async (req, res) => {
+  const postUpdate = await Post.findByIdAndUpdate(req.params.id, {
+    // title: req.body.title,
+    body: req.body.body,
+  });
+  res.json({
+    data: postUpdate,
+    message: "post updated successfully",
+  });
+};
 ////////////////
 
 module.exports = {
@@ -44,4 +55,5 @@ module.exports = {
   getPosts,
   getPostsById,
   getPostsByUserId,
+  updatePost,
 };

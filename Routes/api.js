@@ -13,6 +13,7 @@ const {
   getPosts,
   getPostsById,
   getPostsByUserId,
+  updatePost,
 } = require("../Controllers/PostController");
 const authToken = require("../middleware/Auth");
 const login = require("../Controllers/AuthController");
@@ -47,6 +48,7 @@ router.post("/post-upload", upload.single("image"), createPost); // post upload
 router.get("/post-all", getPosts);
 router.get("/post-id/:id", getPostsById);
 router.post("/user/posts", getPostsByUserId);
+router.post("/post/update/:id", updatePost);
 
 ////user routes
 router.post("/create-user", createUser);
