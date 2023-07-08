@@ -25,7 +25,7 @@ const sendResetLink = async (mail, hash) => {
     to: mail,
     subject: "Reset Password",
     text: "Welcome to BlogSite",
-    html: `<div><p><a href = 'http://127.0.0.1:4000/?hash=${hash}'>Set a new password</a></p><p>Sincerely</p><p>BlogSite</p></div>`,
+    html: `<div><p>You requested for a password reset, kindly use this <a href="http://127.0.0.1:3000/forgot/Password?hash=${hash}">link</a> to reset your password</p></div>`,
   });
 
   return true;
@@ -76,7 +76,7 @@ const forgotPassword = async (req, res) => {
         );
         res.status(200).json({
           success: true,
-          message: "your password has updaated successfully",
+          message: "your password has updated successfully",
         });
       } else {
         res.status(401).json({
