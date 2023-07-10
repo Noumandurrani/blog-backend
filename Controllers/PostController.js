@@ -48,7 +48,14 @@ const updatePost = async (req, res) => {
     message: "post updated successfully",
   });
 };
-////////////////
+///////////////delete post
+const DelPost = async (req, res) => {
+  const postDel = await Post.findByIdAndDelete(req.params.id);
+  res.json({
+    message: "post deleted successfully",
+  });
+};
+///////////////
 
 module.exports = {
   createPost,
@@ -56,4 +63,5 @@ module.exports = {
   getPostsById,
   getPostsByUserId,
   updatePost,
+  DelPost,
 };

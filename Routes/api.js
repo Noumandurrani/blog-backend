@@ -14,6 +14,7 @@ const {
   getPostsById,
   getPostsByUserId,
   updatePost,
+  DelPost,
 } = require("../Controllers/PostController");
 const authToken = require("../middleware/Auth");
 const login = require("../Controllers/AuthController");
@@ -49,6 +50,7 @@ router.get("/post-all", getPosts);
 router.get("/post-id/:id", getPostsById);
 router.post("/user/posts", getPostsByUserId);
 router.post("/post/update/:id", updatePost);
+router.get("/post/del/:id", DelPost);
 
 ////user routes
 router.post("/create-user", createUser);
