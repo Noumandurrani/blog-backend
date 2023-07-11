@@ -13,7 +13,7 @@ const createUser = async (req, res) => {
     email: req.body.email,
     password: encryptPassword,
     profile: process.env.AVATAR_IMAGE,
-    role: "admin",
+    role: "user",
   });
   let token = await createWebTtoken(user._id);
   res.json({
