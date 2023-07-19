@@ -55,8 +55,17 @@ const DelPost = async (req, res) => {
     message: "post deleted successfully",
   });
 };
-///////////////
-
+////////////post get by category
+const getPostbyCategory = async (req, res) => {
+  const getPostbyCategory = await Post.find({
+    category: req.body.category,
+  });
+  res.json({
+    data: getPostbyCategory,
+    message: "fetch data category",
+  });
+};
+////////////
 module.exports = {
   createPost,
   getPosts,
@@ -64,4 +73,5 @@ module.exports = {
   getPostsByUserId,
   updatePost,
   DelPost,
+  getPostbyCategory,
 };

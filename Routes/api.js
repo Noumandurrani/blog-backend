@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { createCategory } = require("../Controllers/CategoryController");
+const {
+  createCategory,
+  getCategory,
+} = require("../Controllers/CategoryController");
 const {
   createUser,
   updateUser,
@@ -15,6 +18,7 @@ const {
   getPostsByUserId,
   updatePost,
   DelPost,
+  getPostbyCategory,
 } = require("../Controllers/PostController");
 const authToken = require("../middleware/Auth");
 const login = require("../Controllers/AuthController");
@@ -51,6 +55,7 @@ router.get("/post-id/:id", getPostsById);
 router.post("/user/posts", getPostsByUserId);
 router.post("/post/update/:id", updatePost);
 router.get("/post/del/:id", DelPost);
+router.post("/get/post/category", getPostbyCategory);
 
 ////user routes
 router.post("/create-user", createUser);
@@ -64,6 +69,7 @@ router.post("/user/login", login);
 
 ////category routes
 router.post("/store/category", createCategory);
+router.get("/get/category", getCategory);
 
 ////update user profile
 router.post(

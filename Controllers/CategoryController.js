@@ -24,6 +24,16 @@ const createCategory = async (req, res) => {
   }
 };
 
+///get category
+const getCategory = async (req, res) => {
+  const get = await Category.find({});
+  res.json({
+    data: get,
+    message: "successfully fetch category",
+  });
+};
+
 module.exports = {
   createCategory,
+  getCategory,
 };
