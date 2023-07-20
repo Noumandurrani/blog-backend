@@ -10,6 +10,7 @@ const createPost = async (req, res) => {
     author: req.body.author,
     category: req.body.category,
     user_id: req.body.user_id,
+    user_dp: req.body.user_dp,
   });
   res.json({
     message: "post created",

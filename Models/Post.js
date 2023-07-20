@@ -19,6 +19,10 @@ const PostSchema = new mongoose.Schema(
     user_id: {
       type: String,
     },
+    user_dp: {
+      type: String,
+      default: "",
+    },
     category: {
       type: String,
     },
